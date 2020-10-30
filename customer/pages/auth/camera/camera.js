@@ -9,7 +9,8 @@ function dataURLtoFile(dataurl, filename) {
 
 $(document).ready(function () {
     //判定是否进入拍照预览
-    var inPreview = 0
+    var inPreview = 0;
+    var image = null;
     $(".ret").click(function () {
         if (inPreview) {
             //TODO: change icon
@@ -25,15 +26,6 @@ $(document).ready(function () {
             opacity: "1"
         }, "fast");
 
-        //将video的帧填入到canvas中，并从canvas获取图片文件
-        var canvas = $(".canvas")[0];
-        var context = canvas.getContext("2d");
-        var video = $(".video")[0]
-        context.drawImage(video, 0, 0, 300, 150);
-        var image = canvas.toDataURL('image/png');
-        console.log(dataURLtoFile(image, 'aa.png'));
-        //TODO: 将图片写入照片表中
-        
         //canvas弹出显示
         $(".canvas").animate({
             width: "100%",
@@ -42,12 +34,32 @@ $(document).ready(function () {
             marginBottom: "8.75rem"
         }, "fast");
         $(".shot").fadeOut("fast");
+
+        //将video的帧填入到canvas中，并从canvas获取图片文件
+        var canvas = $(".canvas")[0];
+        var context = canvas.getContext("2d");
+        var video = $(".video")[0]
+        //console.log("canvas", canvas.width, canvas.height);
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        image = canvas.toDataURL('image/png');
+        console.log(image);       
+
         inPreview = 1;
     })
     $(".gallery").click(function () {
         if (inPreview) {
             //TODO: change icon
-            toPage("pay");
+            var contain = JSON.parse(localStorage.getItem('contain'));
+            var data = {
+                imgID: 003,
+                image: image,
+                category: contain.category,
+                size: contain.size,
+                bgc: contain.bgc,
+            }
+            localStorage.setItem("contain", JSON.stringify(data));
+            //TODO: 调用AI接口
+            //toPage("pay");
         }
         else {
             refresh();

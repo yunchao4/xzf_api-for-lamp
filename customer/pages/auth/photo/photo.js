@@ -1,18 +1,18 @@
 var vm = new Vue({
     el: '#app',
     data: {
-        type: '',
+        category: 'custom',
         size: '',
-        color: ''
+        bgc: ''
     },
     methods: {
         onTypeChange: function (event) {
             //console.log(event.target.value);
             _this = this
-            _this.type = event.target.value;
+            _this.category = event.target.value;
             var sizeSelect = document.getElementById("sizes");
             var colorSelect = document.getElementById('colors');
-            switch (_this.type) {
+            switch (_this.category) {
                 case 'custom':
                     sizeSelect.disabled = false;
                     colorSelect.disabled = false;
@@ -42,11 +42,29 @@ var vm = new Vue({
             var sizeSelect = document.getElementById("sizes");
             var colorSelect = document.getElementById('colors');
             _this.size = sizeSelect.value;
-            _this.color = colorSelect.value;
-            
+            _this.bgc = colorSelect.value;
+            switch (_this.category) {
+                case 'custom':
+                    _this.category = 0
+                    break;
+                case 'id':
+                    _this.category = 1
+                    break;
+                case 'drive':
+                    _this.category = 2
+                    break;
+                case 'passport':
+                    _this.category = 3
+                    break;
+            }
             //TODO: 写入照片表
-            
-            //TODO: 调用摄像头
+            var data = {
+                category : _this.category,
+                size: _this.size,
+                bgc: _this.bgc,
+            }
+            //console.log(data);
+            localStorage.contain = JSON.stringify(data)
             toPage('camera')
         }
     }
