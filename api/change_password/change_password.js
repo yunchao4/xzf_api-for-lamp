@@ -1,0 +1,53 @@
+var pool = require('../connect/connect');   //引入连接池，里面包含了需要连接的数据库的信息
+var express = require('express');
+var verify = require('../verify/verify')  //引入token验证包
+var router = express.Router();
+router.use('/', verify);
+router.use('/', function (req, res, next) {
+	var name = req.body.name;
+	var old = req.body.old;
+	var newp = req.body.new;
+	var again = req.body.again;
+	var sql = "SELECT password FROM user where username=" + "'" + name + "'"; //输user表的所有数据
+	var str = '';//就是为了取出原密码
+	//调用query方法执行查询mysql数据库对应账号的密码,用连接池是为了建立一次连接使用多次数据库，建立连接很耗时间
+	pool.pool.getConnection(function (err, connection) {
+		if (err) {
+			console.log('连接池错误', err.message);
+			return err.message;
+		}
+		connection.query(sql, function (err, result) {
+			if (err) {
+				console.log('[error]:', err.message);
+				next();
+			}
+			else {
+				str = result[0].password;
+				if (old == str && (old != null)) {
+					if (newp == again && (newp != null)) {
+						var sql = "update user set password = " + "'" + newp + "'" + ' where username = ' + "'" + name + "'";
+						console.log(sql);
+						connection.query(sql, [{ password: newp, name }], function (err, result) {
+							connection.query("SELECT password FROM user where username=" + "'" + name + "'", function (err, result) {
+								console.log('改变后的结果', result);
+								console.log('修改成功');
+							})
+						})
+					}
+					else {
+						console.log('新密码或者再次输入不一致，请重新输入');
+					}
+				}
+				else {
+					console.log('原密码不正确，请重新输入')
+				}
+			}
+		});
+		// connection.release();//释放连接池
+		pool.pool.releaseConnection(connection);//释放连接池
+	});
+
+})
+
+
+module.exports = router;

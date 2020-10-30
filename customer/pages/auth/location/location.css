@@ -1,0 +1,56 @@
+* {
+    margin : 0;
+    padding: 0;
+}
+
+body {
+    top           : 0;
+    display       : flex;
+    flex-direction: column;
+    width         : 100%;
+    text-align    : center;
+}
+
+.back {
+    color      : white;
+    float      : left;
+    line-height: 60px;
+    font-size  : 20px;
+}
+
+.name {
+    font-size: 30px;
+}
+
+.phone {
+    font-size: 30px;
+    color    : lightgrey;
+
+}
+
+.avatar {
+    width        : 50%;
+    height       : 25%;
+    margin-left  : auto;
+    margin-right : auto;
+    margin-bottom: 1.5rem;
+}
+
+.inputArea {
+    margin-top   : 2rem;
+    margin-bottom: 2rem;
+}
+
+.inputArea span {
+    flex      : 2;
+    text-align: right;
+}
+
+.inputArea input {
+    flex         : 7;
+    height       : 56px;
+    font-size    : 18px;
+    padding-left : 1.5rem;
+    border       : 1px, solid, lightgrey;
+    border-radius: 10px;
+}

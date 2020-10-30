@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../../../app.css" />
+		<link rel="stylesheet" type="text/css" href="result.css" />
+		<title>AI证件照-订单</title>
+	</head>
+
+	<body>
+		<div class="bodyflex" id="app">
+			<div class="dxhead">
+				<div class="titlebar flexlayout">
+					<div class="ret" @click="ret">
+						返回
+					</div>
+					<div class="title">
+						AI证件照-订单
+					</div>
+					<div>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="data">
+					<div class="pic1"><img src="../../../images/main.png" /></div>
+					<div class="pic2"><img src="../../../images/full.png" /></div>
+
+				</div>
+				<div class="download">
+					<div class="mainbutton" @click="download1">
+						下载照片
+					</div>
+				</div>
+				<div class="info">
+					<!-- <div class="photoinfo">
+						<div>
+							<p>类型：</p>
+							<p>xx证</p>
+						</div>
+						<div>
+							<p>尺寸：</p>
+							<p>x寸</p>
+						</div>
+						<div>
+							<p>底色：</p>
+							<p>x色</p>
+						</div>
+					</div>
+					<div>
+						<p>订单状态：</p>
+						<p>交易成功(失败)</p>
+					</div>
+					<div>
+						<p>服务类型：</p>
+						<p>门店打印</p>
+					</div>
+					<div>
+						<p>门店地址：</p>
+						<p>xxx市xxx区xx路xxx</p>
+						<a>联系店家</a>
+					</div>
+					<div>
+						<p>交易时间：</p>
+						<p>2020年10月10日 10:17</p>
+					</div>
+					<div>
+						<p>支付金额：</p>
+						<p>10元</p>
+					</div> -->
+					<div>
+						<p>请联系门店工作人员进行现场打印</p>
+					</div>
+					<div class="shopinfo">
+						{{shopname}}
+						<br />
+						{{shopuser}} {{shopphone}}
+					</div>
+					<div class="priceinfo">
+						现场打印含：电子照片2元，打印5元
+					</div>
+					<div class="price">
+						<div class="char">
+							￥
+						</div>
+						<div class="yen">{{price}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--引入vue.js数据渲染引擎-->
+		<script src="../../../libs/vue.min.js"></script>
+		<!--公共js代码-->
+		<script src="../../../app.js"></script>
+		<!--本页面js代码-->
+		<script src="result.js"></script>
+	</body>
+
+</html>

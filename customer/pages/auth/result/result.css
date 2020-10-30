@@ -1,0 +1,39 @@
+.data{
+    display: flex;
+    margin-bottom: 0rem;
+}
+.pic1>img{
+    height: 10rem;
+    width:8rem;
+    margin-left: 1.5rem;
+}
+.pic2>img{
+    height: 10rem;
+    width: 14rem;
+    right: 5rem;
+}
+.download{
+    display: flex;
+}
+
+
+.info{
+    margin-top: 6rem;
+}
+.shopinfo{
+    margin-left: 3rem;
+}
+.priceinfo{
+    margin-top: 3rem;
+}
+.price{
+    display: flex;
+}
+.char{
+    font-size: 2rem;
+    padding-top: 2rem;
+}
+.yen{
+    font-size: 4rem;
+    color: red;
+}

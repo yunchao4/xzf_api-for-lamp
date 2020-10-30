@@ -1,0 +1,13 @@
+.imgoption {
+    width : 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.imgoption select {
+    margin-left: 0.25rem;
+    width      : 87%;
+    height     : 2rem;
+    background: white;
+}
+

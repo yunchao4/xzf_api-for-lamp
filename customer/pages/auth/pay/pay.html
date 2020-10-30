@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>订单类型选择</title>
+        <link rel="stylesheet" type="text/css" href="../../../app.css">
+        <link rel="stylesheet" type="text/css" href="pay.css">
+    </head>
+
+    <body>
+        <div class="bodyflex" id="app">
+            <div class="dxhead">
+                <div class="titlebar flexlayout">
+                    <div class="ret" @click="ret">
+                        < 返回
+                    </div>
+                    <div class="title">
+                        AI证件照-拍照
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="portait">
+                    <img class="main" src="../../../images/main.png">
+                    <img class="full" src="../../../images/full.png">
+                </div>
+
+                <p class="info">
+                    请先查看带水印预览图，确认没问题再下单，如有问题，可返回重新拍照，下单后可下载无水印成图。
+                </p>
+
+                <div class="purchasetype" @change="onTypeChange($event)">
+                    <form id="purchasetype">
+                        <label>选购：</label>
+                        <input type="radio" name="purchase" value="online" checked>
+                        <label>电子照片</label>
+                        <input type="radio" name="purchase" value="offline">
+                        <label>现场打印</label>
+                        <input type="radio" name="purchase" value="express">
+                        <label>快递到家</label>
+                    </form>
+                </div>
+                <div class="purchasetype">
+                    <form>
+                        <label>份数：</label>
+                        <select id="number" @change="onNumChange($event)" disabled>
+                            <option value="1">1份</option>
+                            <option value="2">2份</option>
+                            <option value="3">3份</option>
+                            <option value="4">4份</option>
+                            <option value="5">5份</option>
+                            <option value="6">6份</option>
+                            <option value="7">7份</option>
+                            <option value="8">8份</option>
+                            <option value="9">9份</option>
+                            <option value="10">10份</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="purchasetype">
+                    <form>
+                        <label>门店：</label>
+                        <!--vue.js 加载门店名 -->
+                        <select id="outlet" disabled>
+                            <option></option>
+                        </select>
+                    </form>
+                </div>
+                <div class="purchasetype">
+                    <label>地址：</label>
+                    <textarea rows="2" class="address" id="address" disabled></textarea>
+                </div>
+                <div class="priceinfo">
+                    <p>现场打印含：电子照片2元，打印5元</p>
+                </div>
+                <div class="price">
+                    <label>￥</label>
+                    <label class="number">{{price}}</label>
+                </div>
+                <div>
+                    <button class="mainbutton" @click="pay">下单</button>
+                </div>
+            </div>
+        </div>
+        <!--引入vue.js数据渲染引擎-->
+        <script src="../../../libs/vue.min.js"></script>
+        <!--公共JS代码-->
+        <script src="../../../app.js"></script>
+        <!--本页面JS代码-->
+        <script src="pay.js"></script>
+    </body>
+
+</html>

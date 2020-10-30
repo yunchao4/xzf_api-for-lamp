@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>AI证件照-历史</title>
+		<link rel="stylesheet" type="text/css" href="../../../app.css" />
+		<link rel="stylesheet" type="text/css" href="history.css" />
+	</head>
+
+	<body>
+		<div class="bodyflex" id="app">
+			<div class="dxhead">
+				<div class="titlebar">
+					AI证件照-历史
+				</div>
+			</div>
+			<div class="content">
+				<div class="Order" v-for="(item,i) in list" :key="i" @click="enter(item)">
+					<div class="photo">
+						<img src={{item.photo}} />
+					</div>
+					<div class="rightDetail">
+						<div class="photoinfo">
+							<div class="info">
+								{{item.size}}、{{item.color}}
+							</div>
+							<div class="time">
+								{{item.year}}-{{item.month}}-{{item.day}}
+							</div>
+						</div>
+					</div>
+					<div class="rightArrow">
+						<img src="../../../images/toRight.png" />
+					</div>
+				</div>
+			</div>
+			<ul class="footer flexlayout">
+				<li>
+					<a href="../photo/photo.html">
+						<div>
+							<img src="../../../images/photo.svg">
+						</div>
+						拍照
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<div>
+							<img src="../../../images/order.svg">
+						</div>
+						历史
+					</a>
+				</li>
+				<li>
+					<a href="../my/my.html">
+						<div>
+							<img src="../../../images/my.svg">
+						</div>
+						我的
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!--引入vue.js数据渲染引擎-->
+		<script src="../../../libs/vue.min.js"></script>
+		<!--公共js代码-->
+		<script src="../../../app.js"></script>
+		<!--本页面js代码-->
+		<script src="history.js"></script>
+	</body>
+
+</html>

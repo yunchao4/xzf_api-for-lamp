@@ -1,0 +1,25 @@
+.Order{
+    width: 100%;
+    height: 10.75rem;
+    display: flex;
+    border-bottom: 0.5px solid;
+}
+.photo{
+    width: 10rem;
+    height: 10rem;
+}
+.rightDetail{
+    width: 100%;
+}
+.rightArrow>img{
+    width: 2rem;
+    height: 2rem;
+    right: 0rem;
+    margin-top: 4rem;
+}
+.info,.time{
+    margin-left: 1rem;
+}
+.photoinfo{
+    margin-top: 2.5rem;
+}

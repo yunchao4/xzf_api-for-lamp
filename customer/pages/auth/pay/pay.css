@@ -1,0 +1,44 @@
+.info{
+    font-size: 14px;
+}
+.purchasetype{
+    margin-top: 1rem;
+    margin-bottom: 1rem;  
+}
+
+.purchasetype form{
+    justify-content: center;
+}
+
+.purchasetype input{
+    margin: 0.4rem;
+}
+
+.purchasetype select{
+    width: 86%;
+    line-height: normal;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background: white;
+}
+
+.purchasetype .address{
+    width: 85%;
+    height: 100%;
+    border-radius: 4px;
+    background: white;
+}
+
+.priceinfo{
+    margin-top: 1rem;
+}
+
+.price label{
+    font-size: 1.75rem;
+}
+
+.number{
+    font-size: 2rem;
+    color: red;
+}
+

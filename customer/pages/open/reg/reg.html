@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" 
+        content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <title>AI证件照-注册</title>
+        <link rel="stylesheet" type="text/css" href="../../../app.css"/>
+        <link rel="stylesheet" type="text/css" href="reg.css"/>
+    </head>
+    <body>
+        <div class="bodyflex" id="app">
+            <div class="dxhead">
+                <div class="titlebar">
+                    AI证件照-注册
+                </div>
+            </div>
+            <div>
+                <img class="photo" src="../../../images/loginimg.png" />
+            </div>
+            <div class="content">
+                <div class="info">
+                    <div class="flexlayout inputArea">
+                        <span>
+                           手机号
+                        </span>
+                        <div class="inputWrap">
+                          <input placeholder="请输入手机号" v-model="usernameInput"/>
+                        </div>
+                    </div>
+                    <div class="flexlayout  inputArea">
+                        <span>
+                            验证码
+                        </span>
+                        <div class="inputWrap">
+                            <input placeholder="请输入验证码"
+                            v-model="smsInput" />
+                        </div>
+                        <div class="getSms" @click="sendSms">
+                            <div class="sms">
+                                发送验证码
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexlayout inputArea">
+                        <span>
+                            密码
+                        </span>
+                        <div class="inputWrap">
+                          <input placeholder="请输入密码"
+                          type="password"
+                          v-model="passwordInput"  />
+                        </div>
+                    </div>
+                    <div class="mainbutton" @click="reg">
+                        注册
+                    </div>
+                    <div class="normalbutton" @click="login">
+                        登录
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!--引入vue.js数据渲染引擎-->
+            <script src="../../../libs/vue.min.js"></script>
+            <!--引入Bmob.js后端交互工具
+            <script src="../../lib/Bmob-1.7.1.min.js"></script>-->
+            <script src="../../../app.js"></script>
+            <!--本页面JS代码-->
+            <script src="reg.js"></script>
+    </body>
+</html>

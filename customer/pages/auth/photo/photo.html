@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>AI证件照-拍照</title>
+        <link rel="stylesheet" type="text/css" href="../../../app.css">
+        <link rel="stylesheet" type="text/css" href="photo.css">
+    </head>
+
+    <body>
+        <div class="bodyflex" id="app">
+            <div class="dxhead">
+                <div class="titlebar">
+                    AI证件照-拍照
+                </div>
+            </div>
+            <div class="content">
+                <div class="portait">
+                    <img class="main" src="../../../images/main.png">
+                    <img class="full" src="../../../images/full.png">
+                </div>
+
+                <div class="imgoption">
+                    规格: 
+                    <select id="types" @change="onTypeChange($event)">                 
+                        <option value="custom">自定义</option>
+                        <option value="id">身份证</option>
+                        <option value="drive">驾驶证</option>
+                        <option value="passport">护照</option>
+                    </select>
+                </div>
+
+                <div class="imgoption">
+                    尺寸:
+                    <select id="sizes">
+                        <option value="small">小一寸</option>
+                        <option value="normal">一寸</option>
+                        <option value="large">大一寸</option>
+                    </select>
+                </div>
+
+                <div class="imgoption">
+                    底色:
+                    <select id="colors">
+                        <option value="white">白色</option>
+                        <option value="blue">蓝色</option>
+                        <option value="red">红色</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button class="mainbutton" @click="capture">拍照</button>
+                </div>
+            </div>
+
+            <ul class="footer flexlayout">
+                <li>
+                    <a href="#">
+                        <div>
+                            <img src="../../../images/photo.svg">
+                        </div>
+                        拍照
+                    </a>
+                </li>
+                <li>
+                    <a href="../history/history.html">
+                        <div>
+                            <img src="../../../images/order.svg">
+                        </div>
+                        历史
+                    </a>
+                </li>
+                <li>
+                    <a href="../my/my.html">
+                        <div>
+                            <img src="../../../images/my.svg">
+                        </div>
+                        我的
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!--引入vue.js数据渲染引擎-->
+        <script src="../../../libs/vue.min.js"></script>
+        <!--公共JS代码-->
+        <script src="../../../app.js"></script>
+        <!--本页面JS代码-->
+        <script src="photo.js"></script>
+    </body>
+
+</html>
