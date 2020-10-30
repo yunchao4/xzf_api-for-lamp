@@ -2,13 +2,13 @@
 var vm = new Vue(
     {
         //绑定哪一个区域
-        el:'#app',
-        data:{
-            usernameInput : null,
-            passwordInput : null,
+        el: '#app',
+        data: {
+            usernameInput: null,
+            passwordInput: null,
         },
         //该区域用到的函数
-        methods:{
+        methods: {
             reg: function () {
                 toPage('reg')
             },
@@ -22,7 +22,6 @@ var vm = new Vue(
                     window.alert('请输入正确用户名');
                     return;
                 }*/
-                //判断你的密码有没有填写
                 if (this.passwordInput === null || this.passwordInput === '') {
                     window.alert('密码必须填写');
                     return;
@@ -32,11 +31,12 @@ var vm = new Vue(
                     window.alert('请输入6位以上密码');
                     return;
                 }
+                //登录信息结构体
                 var mydata = {
                     password: this.passwordInput,
                     username: this.usernameInput
                 }
-                //模拟一件登陆
+                //访问路由
                 //TODO: 登录失败禁止跳转
                 fetch('http://localhost:3000/login', {
                     method: 'post',
@@ -46,14 +46,18 @@ var vm = new Vue(
                         'Content-Type': 'application/json'
                     },
                     credentials: 'include'
-                }).then(
-                    function (response) {
+                })
+                    .then(function (response) {
                         return response.json();
-                    }).then(function (data) {
+                    })
+                    .then(function (data) {
                         localStorage.setItem("token", data);
                         localStorage.setItem("name", mydata.username);
+                        toPageByFolder('auth', 'photo');
                     })
-                toPageByFolder('auth', 'photo');
+                    .catch(function (err) {
+                        console.log("[error]: ", err);
+                    })
             }
         }
     }

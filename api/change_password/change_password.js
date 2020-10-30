@@ -22,24 +22,27 @@ router.use('/', function (req, res, next) {
 				next();
 			}
 			else {
-				str = result[0].password;
-				if (old == str && (old != null)) {
-					if (newp == again && (newp != null)) {
-						var sql = "update user set password = " + "'" + newp + "'" + ' where username = ' + "'" + name + "'";
-						console.log(sql);
-						connection.query(sql, [{ password: newp, name }], function (err, result) {
-							connection.query("SELECT password FROM user where username=" + "'" + name + "'", function (err, result) {
-								console.log('改变后的结果', result);
-								console.log('修改成功');
+				if (result.length != null || result != undefined) {
+					//console.log("result", result);
+					str = result[0].password;
+					if (old == str && (old != null)) {
+						if (newp == again && (newp != null)) {
+							var sql = "update user set password = " + "'" + newp + "'" + ' where username = ' + "'" + name + "'";
+							connection.query(sql, [{ password: newp, name }], function (err, result) {
+								connection.query("SELECT password FROM user where username=" + "'" + name + "'", function (err, result) {
+									console.log(sql);
+									console.log('改变后的结果', result);
+									console.log('修改成功');
+								})
 							})
-						})
+						}
+						else {
+							console.log('新密码或者再次输入不一致，请重新输入');
+						}
 					}
 					else {
-						console.log('新密码或者再次输入不一致，请重新输入');
+						console.log('原密码不正确，请重新输入')
 					}
-				}
-				else {
-					console.log('原密码不正确，请重新输入')
 				}
 			}
 		});

@@ -38,8 +38,13 @@ var vm = new Vue({
 		},
 		quit: function () {
 			localStorage.clear();
+			window.alert("账号已退出")
+			toPageByFolder("open", "login");
 			// location.href="登陆页面"
 		}
+	},
+	created: function () {
+		this.name = localStorage.getItem("name")
 	}
 })
 
