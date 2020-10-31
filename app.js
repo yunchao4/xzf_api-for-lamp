@@ -34,7 +34,7 @@ app.use(cors({ credentials: true, origin: 'http://172.18.52.55:3000' }));
 // parse application/x-www-form-urlencoded  
 //app.use(bodyParser.urlencoded({ extended: false }))
 
-//不添加下两行代码，图片的BASE64数据会太大而无法添加
+//如果不添加下两行代码，图片的BASE64数据会太大而无法添加
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
@@ -45,7 +45,7 @@ app.use('/verify', change_password);
 app.use('/location', change_location);
 
 app.use('/save_photo', save_photo);
-//app.use('/save_order', save_order);
+app.use('/save_order', save_order);
 
 // app.use('/verify',verify); //拦截的函数
 //设置管理静态目录(cutomer为我们前端页面的根目录)
