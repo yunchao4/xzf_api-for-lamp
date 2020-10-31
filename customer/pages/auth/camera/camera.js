@@ -1,12 +1,3 @@
-function dataURLtoFile(dataurl, filename) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
-}
-
 $(document).ready(function () {
     //判定是否进入拍照预览
     var inPreview = 0;
@@ -42,24 +33,43 @@ $(document).ready(function () {
         //console.log("canvas", canvas.width, canvas.height);
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
         image = canvas.toDataURL('image/png');
-        console.log(image);       
+        //console.log(image);       
 
         inPreview = 1;
     })
     $(".gallery").click(function () {
         if (inPreview) {
             //TODO: change icon
-            var contain = JSON.parse(localStorage.getItem('contain'));
+            var contain = JSON.parse(localStorage.getItem('photo'));
             var data = {
-                imgID: 003,
+                imgID: randomString(32),
                 image: image,
                 category: contain.category,
                 size: contain.size,
                 bgc: contain.bgc,
             }
-            localStorage.setItem("contain", JSON.stringify(data));
-            //TODO: 调用AI接口
-            //toPage("pay");
+            localStorage.setItem("photo", JSON.stringify(data));
+            //调用接口，将图片信息保存到数据库中
+            fetch('http://localhost:3000/save_photo', {
+                method: 'post',
+                mode: 'cors',
+                headers: {
+                    'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(
+                function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    //返回token验证与否
+                    console.log(data);
+                    //TODO: localstorage交付AI接口处理
+
+                    window.alert("图片处理中");
+                }).then(function () {
+                    toPage("pay");
+                })
         }
         else {
             refresh();
@@ -115,3 +125,14 @@ $(document).ready(function () {
             window.alert("摄像头无法获取图像")
         });
 });
+
+/*
+function dataURLtoFile(dataurl, filename) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+}
+*/

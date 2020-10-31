@@ -41,8 +41,6 @@ var vm = new Vue({
             _this = this
             var sizeSelect = document.getElementById("sizes");
             var colorSelect = document.getElementById('colors');
-            _this.size = sizeSelect.value;
-            _this.bgc = colorSelect.value;
             switch (_this.category) {
                 case 'custom':
                     _this.category = 0
@@ -57,14 +55,35 @@ var vm = new Vue({
                     _this.category = 3
                     break;
             }
-            //TODO: 写入照片表
+            switch (sizeSelect.value) {
+                case 'small':
+                    _this.size = 0
+                    break;
+                case 'normal':
+                    _this.size = 1
+                    break;
+                case 'large':
+                    _this.size = 2
+                    break;
+            }
+            switch (colorSelect.value) {
+                case 'white':
+                    _this.bgc = 0
+                    break;
+                case 'blue':
+                    _this.bgc = 1
+                    break;
+                case 'red':
+                    _this.bgc = 2
+                    break;
+            }
             var data = {
                 category : _this.category,
                 size: _this.size,
                 bgc: _this.bgc,
             }
             //console.log(data);
-            localStorage.contain = JSON.stringify(data)
+            localStorage.setItem('photo', JSON.stringify(data))
             toPage('camera')
         }
     }
