@@ -38,7 +38,7 @@ var vm = new Vue(
                 }
                 //访问路由
                 //TODO: 登录失败禁止跳转
-                fetch('http://172.18.52.55:3000/login', {
+                fetch('http://localhost:3000/login', {
                     method: 'post',
                     mode: 'cors',
                     body: JSON.stringify(mydata),

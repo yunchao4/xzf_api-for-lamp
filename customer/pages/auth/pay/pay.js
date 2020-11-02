@@ -7,7 +7,6 @@ var vm = new Vue({
         address: '',
         basePrice: 5,
         price: 2,
-
     },
     methods: {
         ret: function () {
@@ -48,10 +47,6 @@ var vm = new Vue({
             _this.number = numberSelect[0].value
             _this.outlet = outletSelect[0].value
             _this.address = addressSelect[0].value
-            /*console.log('type', _this.purchasetype);
-            console.log('number', _this.number);
-            console.log('outlet', _this.outlet);
-            console.log('address', _this.address);*/
             var type = null;
             switch (_this.purchasetype) {
                 case 'online':
@@ -86,12 +81,15 @@ var vm = new Vue({
                 body: JSON.stringify(data)
             }).then(
                 function (response) {
-                    return response.json();
+                    if (response.ok) {
+                        return response.json();
+                        window.alert("下单成功")
+                        toPage('history')
+                    }
+                    
                 }).then(function (data) {
                     //返回token验证与否
                     console.log(data);
-                }).then(function () {
-                    //toPage("pay");
                 })
 
         },
@@ -102,5 +100,16 @@ var vm = new Vue({
             _this.basePrice = num * 5
             _this.price = 2 + _this.basePrice
         }
+    },
+    created: function () {
+        if (localStorage.getItem('thumb_wm') != null && localStorage.getItem('thumb_wm_list')) {
+            $('.main').attr("src", localStorage.getItem('thumb_wm'))
+            $('.full').attr("src", localStorage.getItem('thumb_wm_list'))
+        }
+        //fullPic = "\"" + localStorage.getItem('thumb_wm_list') + "\"";
+        //mainPic = "\"" + localStorage.getItem('thumb_wm') + "\"";
+        /*fetch(mainURL).then(function (response) {
+            console.log(response.text());
+        })*/
     }
 })
