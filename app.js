@@ -14,8 +14,8 @@ var usersRouter = require('./routes/users');
 var login = require('./api/login/login');
 var change_location = require('./api/change_location/change_location');
 
-var save_photo = require('./api/save_photo/save_photo');
-var save_order = require('./api/save_order/save_order');
+var save_photo = require('./api/photo/save_photo');
+var save_order = require('./api/order/save_order');
 
 //本项目需要引进的包
 var tokenPackage = require('./api/token/token'); //引入关于自定义的token的包，里面有token的验证函数
