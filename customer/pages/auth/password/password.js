@@ -25,11 +25,11 @@ var vm = new Vue({
 					return response.json();
 				}).then(function (data) {
 					if (JSON.parse(data.status) == 1) {
-						alert("修改成功，1秒后跳转");
+						window.alert("修改成功，1秒后跳转");
 						setTimeout("changeState()", 1000)
 					}
 					else{
-						alert(data.msg);
+						window.alert(data.msg);
 					}
 				})
 		},
