@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2020-10-31 15:55:08
+Date: 2020-11-04 21:13:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,6 +28,6 @@ CREATE TABLE `orders` (
   `type` tinyint(4) DEFAULT NULL,
   `money` double(32,0) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `create_at` datatime NOT NULL,
+  `date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`orderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

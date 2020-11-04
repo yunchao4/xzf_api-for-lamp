@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2020-10-31 15:54:46
+Date: 2020-11-04 21:11:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo` (
   `imgID` varchar(255) NOT NULL,
-  `image` longblob,
+  `image` varchar(255) DEFAULT NULL,
   `category` tinyint(4) DEFAULT NULL,
   `size` tinyint(4) DEFAULT NULL,
   `bgc` tinyint(4) DEFAULT NULL,
