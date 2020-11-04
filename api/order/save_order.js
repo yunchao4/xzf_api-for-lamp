@@ -12,11 +12,11 @@ router.use('/', function (req, res, next) {
     var number = req.body.number;
     var money = req.body.money;
     var location = req.body.location;
-
+    var myDate = new Date()
     //数据表名为order时出错
     var findTable = "SELECT * from orders";
-    var sql = "INSERT INTO orders (orderID, userID, storeID, imgID, type, number, money, location) VALUES(?,?,?,?,?,?,?,?)"
-    var sqlParams = [orderID, userID, storeID, imgID, type, number, money, location];
+    var sql = "INSERT INTO orders (orderID, userID, storeID, imgID, type, number, money, location,create_at) VALUES(?,?,?,?,?,?,?,?,?)"
+    var sqlParams = [orderID, userID, storeID, imgID, type, number, money, location,myDate];
     pool.pool.getConnection(function (err, connection) {
         if (err) {
             console.log('连接池错误', err.message);

@@ -1,28 +1,49 @@
+var contain = JSON.parse(localStorage.contain);
+console.log(contain);
 var vm = new Vue({
-    el:'#app',
+    el:"#app",
     data:{
-        userpic1,   //个人照片
-        userpic2,   //成图
-        shopname,   //店铺名
-        shopuser,  //店家联系人
-        shopphone,  //店铺名称  
-        price,      //价钱
+        pic1:'',   //个人照片
+        pic2:'',   //组图
+        shopname:contain.storeID,   //店铺名
+        shopuser : '',  //店家联系人
+        shopphone :'',
+        price:contain.price,         //价钱
     },
     methods:{
         ret:function(){
             ret()
         },
-        download1:function(){
-            //将无水印高清图保存到手机相册
+        download:function(){
+            //将无水印高清图保存到本地
+            var alink = document.createElement("a");
+            alink.href = this.pic1;
+            alink.download = "证件照"; //图片名
+            alink.click();
         },
-        download2:function(){
-            //将组图保存到本地
-        }
+        
     },
     created:function(){
-        //这里要通过接口获取到data中涉及到数据
-        // current.userpic1='';
-        // current.userpic2='';
-        // ...
+        //根据店名取得商店信息
+        var _this = this
+        fetch('http://localhost:3000/get_store', {
+            method: 'post',
+            mode: 'cors',
+            headers: {
+                'Authorization': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(contain)
+        }).then(function (res) {
+                var r = res.json()
+                console.log(r)
+                r.then(data=>{
+                    _this.shopuser = data[0].userID
+                    _this.shopphone = data[0].phone
+                })
+                // return res.json();
+            }).then(function () {
+                //返回token验证与否
+        })
     }
 })

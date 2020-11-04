@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -25,12 +24,18 @@
 			</div>
 			<div class="content">
 				<div class="data">
-					<div class="pic1"><img src="../../../images/main.png" /></div>
-					<div class="pic2"><img src="../../../images/full.png" /></div>
+					<div class="pic1">
+						<!-- <img src="../../../images/main.png" /> -->
+						<img :src = "pic1">
+					</div>
+					<div class="pic2">
+						<!-- <img src="../../../images/full.png" /> -->
+						<img :src = "pic2">
+					</div>
 
 				</div>
 				<div class="download">
-					<div class="mainbutton" @click="download1">
+					<div class="mainbutton" @click="download">
 						下载照片
 					</div>
 				</div>
@@ -74,7 +79,7 @@
 						<p>请联系门店工作人员进行现场打印</p>
 					</div>
 					<div class="shopinfo">
-						{{shopname}}
+						{{ shopname }}
 						<br />
 						{{shopuser}} {{shopphone}}
 					</div>
@@ -92,6 +97,7 @@
 		</div>
 		<!--引入vue.js数据渲染引擎-->
 		<script src="../../../libs/vue.min.js"></script>
+		<script src="../../../libs/jquery-3.5.1.min.js"></script>
 		<!--公共js代码-->
 		<script src="../../../app.js"></script>
 		<!--本页面js代码-->

@@ -56,10 +56,10 @@ var vm = new Vue({
                     break;
             }
             switch (sizeSelect.value) {
-                case 'small':
+                case 'normal':
                     _this.size = 0
                     break;
-                case 'normal':
+                case 'small':
                     _this.size = 1
                     break;
                 case 'large':
@@ -67,10 +67,10 @@ var vm = new Vue({
                     break;
             }
             switch (colorSelect.value) {
-                case 'white':
+                case 'blue':
                     _this.bgc = 0
                     break;
-                case 'blue':
+                case 'white':
                     _this.bgc = 1
                     break;
                 case 'red':
@@ -78,6 +78,7 @@ var vm = new Vue({
                     break;
             }
             var data = {
+                imgID: null,
                 category : _this.category,
                 size: _this.size,
                 bgc: _this.bgc,

@@ -24,8 +24,17 @@ var vm = new Vue({
 				function (response) {
 					return response.json();
 				}).then(function (data) {
-					console.log(data);
+					if (JSON.parse(data.status) == 1) {
+						window.alert("修改成功，1秒后跳转");
+						setTimeout("changeState()", 1000)
+					}
+					else{
+						window.alert(data.msg);
+					}
 				})
+		},
+		changeState:function() {
+			window.location.href = "my.html"
 		}
 	}
 })
