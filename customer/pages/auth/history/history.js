@@ -65,12 +65,13 @@ var vm = new Vue({
                             switch(_this.photo[j].size){
                                 case 0:_this.list[i].size = "小一寸";break;
                                 case 1:_this.list[i].size = "一寸";break;
+                                case 2:_this.list[i].size = "大一寸";break;
                                 default:
                             }
                             switch(_this.photo[j].bgc){
-                                case 0:_this.list[i].bgc = "蓝色";break;
-                                case 1:_this.list[i].bgc = "红色";break;
-                                case 2:_this.list[i].bgc = "白色";break;
+                                case 0:_this.list[i].bgc = "红色";break;
+                                case 1:_this.list[i].bgc = "白色";break;
+                                case 2:_this.list[i].bgc = "蓝色";break;
                                 default:
                             }
                             //订单表还没有时间戳，先用这个替代

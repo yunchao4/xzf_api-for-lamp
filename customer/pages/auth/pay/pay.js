@@ -82,9 +82,9 @@ var vm = new Vue({
             }).then(
                 function (response) {
                     if (response.ok) {
-                        return response.json();
                         window.alert("下单成功")
                         toPage('history')
+                        return response.json();
                     }
                     
                 }).then(function (data) {
