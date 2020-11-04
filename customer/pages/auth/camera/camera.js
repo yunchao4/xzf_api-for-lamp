@@ -1,7 +1,70 @@
+//获取符合用户需要和接口需求的证件照类型数字
+function getSpec_id() {
+    var content = JSON.parse(localStorage.getItem('photo'));
+    //0:custom, 1:id, 2:drive, 3:passport
+    var type = content.category;
+    //0:normal, 1:small, 2:large
+    var size = content.size;
+    //0:white, 1:blue, 2:red
+    var color = content.bgc;
+    var result = null;
+    switch (type) {
+        case 0:
+            result = size * 3 + color + 1;
+            break;
+        case 1:
+            result = 660;
+            break;
+        case 2:
+            result = 183;
+            break;
+        case 3:
+            result = 28;
+            break;
+    }
+    return result;
+}
+
+//将图片信息保存到数据库中
+//@image: 从接口获得的图片id
+function savePhoto2DB(image) {
+
+    var id = randomString(32);
+    var contain = JSON.parse(localStorage.getItem('photo'));
+    contain.imgID = id;
+    localStorage.setItem('photo', JSON.stringify(contain));
+    var data = {
+        imgID: id,
+        image: image,
+        category: contain.category,
+        size: contain.size,
+        bgc: contain.bgc,
+    }
+    //localStorage.setItem("photo", JSON.stringify(data));
+    fetch('http://localhost:3000/save_photo', {
+        method: 'post',
+        mode: 'cors',
+        headers: {
+            'Authorization': localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(
+        function (response) {
+            if (response.ok)
+                return response.json();
+            else
+                return false;
+        })
+    return true;
+}
+
 $(document).ready(function () {
     //判定是否进入拍照预览
     var inPreview = 0;
-    var image = null;
+    var imageBASE64 = null;
+    var imageName = null;
+
     $(".ret").click(function () {
         if (inPreview) {
             //TODO: change icon
@@ -10,7 +73,10 @@ $(document).ready(function () {
         else
             ret();
     });
+
     $(".shot").click(function () {
+        //视频元素缩小到消失
+        //TODO: 关闭摄像头
         $(".video").animate({
             //width: "0px",
             height: "0px",
@@ -30,46 +96,66 @@ $(document).ready(function () {
         var canvas = $(".canvas")[0];
         var context = canvas.getContext("2d");
         var video = $(".video")[0]
-        //console.log("canvas", canvas.width, canvas.height);
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        image = canvas.toDataURL('image/png');
-        //console.log(image);       
+        imageBASE64 = canvas.toDataURL('image/png');      
 
+        //进入canvas图像预览状态
         inPreview = 1;
     })
+
     $(".gallery").click(function () {
         if (inPreview) {
             //TODO: change icon
-            var contain = JSON.parse(localStorage.getItem('photo'));
+
             var data = {
-                imgID: randomString(32),
-                image: image,
-                category: contain.category,
-                size: contain.size,
-                bgc: contain.bgc,
+                //传到接口的图片BASE64需要裁剪前缀
+                "file": imageBASE64.slice(22),
+                "spec_id": getSpec_id(),
+                "app_key": "bcf65f1187ce4993e8c1ce0b80cf0d39b509ea7d",
+                //是否开启美颜
+                "is_fair": 1,
+                //美颜等级(1-5)
+                "fair_level": 3
             }
-            localStorage.setItem("photo", JSON.stringify(data));
-            //调用接口，将图片信息保存到数据库中
-            fetch('http://localhost:3000/save_photo', {
+            //调用AI接口处理图像
+            fetch('http://apicall.id-photo-verify.com/api/cut_pic', {
                 method: 'post',
                 mode: 'cors',
                 headers: {
-                    'Authorization': localStorage.getItem('token'),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             }).then(
                 function (response) {
-                    return response.json();
-                }).then(function (data) {
-                    //返回token验证与否
-                    console.log(data);
-                    //TODO: localstorage交付AI接口处理
+                    if (response.ok) {
+                        response.json().then(function (data) {
+                            //console.log(data);
+                            if (data.code == 200) {
+                                //获取带水印缩略图URL
+                                var thumb_wm = data.result.img_wm_url_list[0];
+                                var thumb_wm_list = data.result.print_wm_url_list[0];
+                                localStorage.setItem('thumb_wm', thumb_wm);
+                                localStorage.setItem('thumb_wm_list', thumb_wm_list);
+                                //获取图片名，用于保存数据库并提供原图下载
+                                imageName = data.result.file_name[0];
+                                //console.log("imageName", imageName);
+                                if (!savePhoto2DB(imageName)) {
+                                    throw new Error('Photo saving failed');
+                                }
+                            }
+                            else {
+                                window.alert(data.error);
+                                throw new Error('Photo process failed: ' + data.error);
+                            }
+                        }).then(function () {
+                            toPage('pay');
+                        })
+                    }
+                    else {
+                        throw new Error('Photo process failed');
+                    }    
+                }).catch(error => console.error(error))
 
-                    window.alert("图片处理中");
-                }).then(function () {
-                    toPage("pay");
-                })
         }
         else {
             refresh();
@@ -125,14 +211,3 @@ $(document).ready(function () {
             window.alert("摄像头无法获取图像")
         });
 });
-
-/*
-function dataURLtoFile(dataurl, filename) {
-    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
-}
-*/
