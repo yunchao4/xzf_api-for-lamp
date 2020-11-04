@@ -28,5 +28,6 @@ CREATE TABLE `orders` (
   `type` tinyint(4) DEFAULT NULL,
   `money` double(32,0) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL,
+  `create_at` datatime NOT NULL,
   PRIMARY KEY (`orderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
