@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" 
-        content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <title>AI证件照-登录</title>
-        <link rel="stylesheet" type="text/css" href="../../../app.css"/>
-        <link rel="stylesheet" type="text/css" href="login.css"/>
-    </head>
-    <body>
-        <div class="bodyflex" id="app">
-            <div class="dxhead">
-                <div class="titlebar">
-                    AI证件照-登录
-                </div>
-            </div>
-            <div>
-                <img class="photo" src="../../../images/loginimg.png" />
-            </div>
-            <div class="content">
-                <div class="info">
-                    <div class="flexlayout inputArea">
-                        <span>
-                           手机号码
-                        </span>
-                        <div class="inputWrap">
-                          <input placeholder="请输入手机号码" v-model="usernameInput"/>
-                        </div>
-                    </div>
-                    <div class="flexlayout inputArea">
-                        <span>
-                            登录密码
-                        </span>
-                        <div class="inputWrap">
-                          <input placeholder="请输入登录密码"
-                          type="password"
-                          v-model="passwordInput"  />
-                        </div>
-                    </div>
-                    <div class="mainbutton" @click="login">
-                        登录
-                    </div>
-                    <div class="normalbutton" @click="reg">
-                        注册
-                    </div>
-                </div>  
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AI证件照-登录</title>
+    <link rel="stylesheet" type="text/css" href="../../../app.css" />
+    <link rel="stylesheet" type="text/css" href="login.css" />
+</head>
+
+<body>
+    <div class="bodyflex" id="app">
+        <div class="dxhead">
+            <div class="titlebar">
+                AI证件照-登录
             </div>
         </div>
-            <script src="../../../libs/vue.min.js"></script>
-            <script src="../../../libs/jquery-3.5.1.min.js"></script>
-            <script src="../../../app.js"></script>
-            <!--本页面JS代码-->
-            <script src="login.js"></script>
-    </body>
+        <div>
+            <img class="photo" src="../../../images/loginimg.png" />
+        </div>
+        <div class="content">
+            <div class="info">
+                <div class="flexlayout inputArea">
+                    <span>
+                           用户名
+                        </span>
+                    <div class="inputWrap">
+                        <input placeholder="请输入用户名" v-model="usernameInput" />
+                    </div>
+                </div>
+                <div class="flexlayout inputArea">
+                    <span>
+                            登录密码
+                        </span>
+                    <div class="inputWrap">
+                        <input placeholder="请输入登录密码" type="password" v-model="passwordInput" />
+                    </div>
+                </div>
+                <div class="mainbutton" @click="login">
+                    登录
+                </div>
+                <div class="normalbutton" @click="reg">
+                    注册
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../libs/vue.min.js"></script>
+    <script src="../../../libs/jquery-3.5.1.min.js"></script>
+    <script src="../../../app.js"></script>
+    <!--本页面JS代码-->
+    <script src="login.js"></script>
+</body>
+
 </html>
