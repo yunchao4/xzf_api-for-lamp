@@ -1,10 +1,10 @@
-.bodyflex{
+.bodyflex {
     background: rgba(0, 0, 0, 0.75);
 }
 
 .contentHolder {
-    flex : 1;
-    width: 100%;
+    flex           : 1;
+    width          : 100%;
     justify-content: center;
 }
 
@@ -14,33 +14,56 @@
     margin: auto;
 }
 
-.contentHolder canvas{
-    width: 1rem;
-    height: 1rem;
-    margin: auto;
+.contentHolder canvas {
+    width          : 1rem;
+    height         : 1rem;
+    margin         : auto;
     justify-content: center;
 }
 
 .bottom {
-    display: flex;
-    margin: auto;
-    padding: 1rem;
-    text-align: center;
+    display        : flex;
+    margin         : auto;
+    padding        : 1rem;
+    text-align     : center;
     justify-content: center;
 }
 
-.bottom .shot,.ret,.gallery {
+.bottom .shot,
+.ret,
+.gallery {
     width        : 5rem;
     height       : 5rem;
     border-radius: 100%;
-    background: white;
+    background   : white;
 }
 
-.bottom div{
-    flex: 1;
-    text-align: center;
+
+.ret {
+    background-image   : url(../../../images/return.png);
+    background-repeat  : no-repeat;
+    background-position: center;
+    background-size    : 28px;
+}
+
+.gallery {
+    background-image   : url(../../../images/gallery.png);
+    background-repeat  : no-repeat;
+    background-position: center;
+    background-size    : 28px;
+}
+
+.bottom .shot {
+    background-image   : url(../../../images/shot.png);
+    background-repeat  : no-repeat;
+    background-position: center;
+    background-size    : 60px;
+}
+
+.bottom div {
+    flex           : 1;
+    text-align     : center;
     justify-content: center;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left    : 1rem;
+    margin-right   : 1rem;
 }
-

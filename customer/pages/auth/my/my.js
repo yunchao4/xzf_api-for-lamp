@@ -7,7 +7,7 @@ var vm = new Vue({
 	methods: {
 		login: function () {
 			toPageByFolder("open", "login");
-			/*var mydata = {
+			var mydata = {
 				password: 123456,
 				username: 'sc'
 			}
@@ -26,7 +26,7 @@ var vm = new Vue({
 				}).then(function (data) {
 					localStorage.setItem("token", data);
 					localStorage.setItem("name", mydata.username);
-				})*/
+				})
 		},
 		jump_password: function () {
 			if (localStorage.getItem('name') != null)
