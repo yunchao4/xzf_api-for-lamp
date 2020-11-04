@@ -16,6 +16,9 @@ var change_location = require('./api/change_location/change_location');
 
 var save_photo = require('./api/photo/save_photo');
 var save_order = require('./api/order/save_order');
+var get_order = require('./api/get_order/get_order');
+var get_photo = require('./api/get_photo/get_photo');
+var get_store = require('./api/get_store/get_store')
 
 //本项目需要引进的包
 var tokenPackage = require('./api/token/token'); //引入关于自定义的token的包，里面有token的验证函数
@@ -46,6 +49,9 @@ app.use('/location', change_location);
 
 app.use('/save_photo', save_photo);
 app.use('/save_order', save_order);
+app.use('/get_order',get_order);
+app.use('/get_photo',get_photo);
+app.use('/get_store',get_store);
 
 // app.use('/verify',verify); //拦截的函数
 //设置管理静态目录(cutomer为我们前端页面的根目录)
