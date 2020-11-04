@@ -10,7 +10,7 @@ router.use('/', function (req, res, next) {
 	var old = req.body.old;
 	var newp = req.body.new;
 	var again = req.body.again;
-	var sql = "SELECT password FROM user where name=" + "'" + name + "'"; //输user表的所有数据
+	var sql = "SELECT password FROM user where username=" + "'" + name + "'"; //输user表的所有数据
 	var str = '';//就是为了取出原密码
 	//调用query方法执行查询mysql数据库对应账号的密码,用连接池是为了建立一次连接使用多次数据库，建立连接很耗时间
 	if (token.length != 4) {
@@ -28,7 +28,7 @@ router.use('/', function (req, res, next) {
 					str = result[0].password;
 					if (old == str && (old != null) && (old.length != 4)) {
 						if (newp == again && (newp != null)) {
-							var sql = "update user set password = " + "'" + newp + "'" + ' where name = ' + "'" + name + "'";
+							var sql = "update user set password = " + "'" + newp + "'" + ' where username = ' + "'" + name + "'";
 							console.log('要执行的sql语句：', sql);
 							connection.query(sql, [{ password: newp, name }], function (err, result) {
 								if (err) {

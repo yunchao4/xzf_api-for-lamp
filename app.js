@@ -1,5 +1,5 @@
 var createError = require('http-errors');
-var bodyParser = require('body-parser');//解析请求体的模块，必须加，新版的express实现了中间件分离，所以没有了请求体，所以后出现向后端发送信息错误
+var bodyParser = require('body-parser'); //解析请求体的模块，必须加，新版的express实现了中间件分离，所以没有了请求体，所以后出现向后端发送信息错误
 var express = require('express');
 var path = require('path');
 var fetch = require('node-fetch');
@@ -7,11 +7,12 @@ var cookieParser = require('cookie-parser');
 var verify = require('./api/verify/verify');
 var logger = require('morgan');
 var change_password = require('./api/change_password/change_password')
-var app = express();  //申请express类下的app对象
+var app = express(); //申请express类下的app对象
 var homepage = require('./routes/index'); //引入设置主页的包
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var login = require('./api/login/login');
+var register = require('./api/register/register');
 var change_location = require('./api/change_location/change_location');
 
 var save_photo = require('./api/photo/save_photo');
@@ -46,7 +47,7 @@ app.use(bodyParser.json())
 app.use('/login', login);
 app.use('/verify', change_password);
 app.use('/location', change_location);
-
+app.use('/register', register);
 app.use('/save_photo', save_photo);
 app.use('/save_order', save_order);
 app.use('/get_order',get_order);

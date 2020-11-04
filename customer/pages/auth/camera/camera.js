@@ -91,6 +91,10 @@ $(document).ready(function () {
             marginBottom: "8.75rem"
         }, "fast");
         $(".shot").fadeOut("fast");
+        //修改剩下两个按钮的图标
+        $(".ret").css('background-image', 'url(../../../images/cancel.png)')
+        $(".ret").css('background-size', '20px')
+        $(".gallery").css('background-image', 'url(../../../images/confirm.png)')
 
         //将video的帧填入到canvas中，并从canvas获取图片文件
         var canvas = $(".canvas")[0];
