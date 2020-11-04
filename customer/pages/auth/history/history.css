@@ -7,6 +7,11 @@
 .photo{
     width: 10rem;
     height: 10rem;
+    padding-top: 0.35rem;
+}
+.nwm_img{
+    width: 9rem;
+    height: 10rem;
 }
 .rightDetail{
     width: 100%;

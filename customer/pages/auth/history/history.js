@@ -10,10 +10,14 @@ var vm = new Vue({
             //点击某个历史记录
             localStorage.contain = JSON.stringify(contain);
             toPage('result');
+        },
+        refresh:function(){
+            refresh()
         }
     },
     created:function(){
         // 这里获取所有的订单
+        // refresh()
         var _this=this;
         var obj ={
             name:localStorage.getItem('name')
@@ -69,19 +73,48 @@ var vm = new Vue({
                                 default:
                             }
                             switch(_this.photo[j].bgc){
-                                case 0:_this.list[i].bgc = "红色";break;
+                                case 0:_this.list[i].bgc = "蓝色";break;
                                 case 1:_this.list[i].bgc = "白色";break;
-                                case 2:_this.list[i].bgc = "蓝色";break;
+                                case 2:_this.list[i].bgc = "红色";break;
                                 default:
                             }
-                            //订单表还没有时间戳，先用这个替代
+                            switch(_this.photo[j].category){
+                                case 0:_this.list[i].category = "自定义";break;
+                                case 1:_this.list[i].category = "身份证";break;
+                                case 2:_this.list[i].category = "驾驶照";break;
+                                case 3:_this.list[i].category = "护照";break;
+                                default:
+                            }
+                            
+                            var img = _this.list[i].image
+                            var img_body={
+                                    "file_name": img,
+                                    "app_key": "bcf65f1187ce4993e8c1ce0b80cf0d39b509ea7d"
+                            }
+                            fetch('http://apicall.id-photo-verify.com/api/take_cut_pic_v2',{
+                                method:'post',
+                                mode:'cors',
+                                headers:{
+                                    'Content-Type': 'application/json'
+                                },
+                                body:JSON.stringify(img_body)
+                            }).then(function(res){
+                                let pic
+                                pic = res.json()
+                                pic.then(data=>{
+                                    // console.log(data.data.file_name);
+                                    // _this.list[i].photo =data.data.file_name
+                                    $('.nwm_img').attr("src", data.data.file_name)
+                                    _this.list[i].pic1 = data.data.file_name
+                                    _this.list[i].pic2 = data.data.file_name_list
+                                })
+                            })
                             var time = _this.order[i].create_at
                             _this.list[i].create_at = time.substring(0,10)
-
                             _this.list[i].storeID = _this.order[i].storeID
                             _this.list[i].price = _this.order[i].money
-                            // _this.list[i].photo = _this.order[i].image.data
-                            break
+                            _this.list[i].type = _this.order[i].type
+                            
                         }
                     }
                 }
