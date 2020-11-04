@@ -19,7 +19,10 @@
 			<div class="content">
 				<div class="Order" v-for="(item,i) in list" :key="i" @click="enter(item)">
 					<div class="photo">
-						<img class = "nwm_img" src="" />
+						<!-- <img : src ="myimg"> -->
+						<!-- <img : src = "list[i].myimg"> -->
+						<img class = "myimg" src="myimg"/>
+						
 					</div>
 					<div class="rightDetail">
 						<div class="photoinfo">

@@ -78,10 +78,18 @@
 					<div>
 						<p id = "tip">请联系门店工作人员进行现场打印</p>
 					</div>
-					<div class="shopinfo">
-						{{ shopname }}
-						<br />
-						{{shopuser}} {{shopphone}}
+					<div class="shopinfo" >
+						<div id = "tip1">
+							<div>店铺名称：{{ shopname }}</div>
+							<br />
+							<div>联系人：{{shopuser}}</div>
+							<br />
+							<div>联系电话：{{shopphone}}</div>
+							<br />
+							<div>地址：{{shoploca}}</div>
+						</div>
+						<div id = "tip2">收货地址：{{recloca}}</div>
+						<div>下单时间:{{time}}</div>
 					</div>
 					<div class="priceinfo">
 						<!-- 现场打印含：电子照片2元，打印5元 -->

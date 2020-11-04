@@ -71,12 +71,14 @@ var vm = new Vue({
                                 case 1:_this.list[i].size = "一寸";break;
                                 case 2:_this.list[i].size = "大一寸";break;
                                 default:
+                                    console.log("照片size值超过2")
                             }
                             switch(_this.photo[j].bgc){
                                 case 0:_this.list[i].bgc = "蓝色";break;
                                 case 1:_this.list[i].bgc = "白色";break;
                                 case 2:_this.list[i].bgc = "红色";break;
                                 default:
+                                    console.log("照片bgc值超过2")
                             }
                             switch(_this.photo[j].category){
                                 case 0:_this.list[i].category = "自定义";break;
@@ -84,6 +86,7 @@ var vm = new Vue({
                                 case 2:_this.list[i].category = "驾驶照";break;
                                 case 3:_this.list[i].category = "护照";break;
                                 default:
+                                    console.log("照片category值超过2")
                             }
                             
                             var img = _this.list[i].image
@@ -103,18 +106,19 @@ var vm = new Vue({
                                 pic = res.json()
                                 pic.then(data=>{
                                     // console.log(data.data.file_name);
-                                    // _this.list[i].photo =data.data.file_name
-                                    $('.nwm_img').attr("src", data.data.file_name)
+                                    // _this.list[i].myimg = data.data.file_name
+                                    $('.myimg').attr("src", data.data.file_name)
                                     _this.list[i].pic1 = data.data.file_name
                                     _this.list[i].pic2 = data.data.file_name_list
                                 })
                             })
                             var time = _this.order[i].create_at
                             _this.list[i].create_at = time.substring(0,10)
+                            _this.list[i].time = time
                             _this.list[i].storeID = _this.order[i].storeID
                             _this.list[i].price = _this.order[i].money
                             _this.list[i].type = _this.order[i].type
-                            
+                            _this.list[i].recloca = _this.order[i].location
                         }
                     }
                 }
