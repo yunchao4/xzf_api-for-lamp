@@ -27,8 +27,6 @@ router.use('/', function (req, res, next) {
 		});
 	})  //pool
 })  //router
-router.get('/', function(req, res, next) {
-	res.redirect('./auth/my/my.html'); //根目录为public
-  });
+
 
 module.exports = router;
