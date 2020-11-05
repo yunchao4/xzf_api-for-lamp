@@ -7,7 +7,7 @@ router.use('/', function (req, res, next) {
 	var location = req.body.location;
 	var name = req.body.name;
 	// var sql = "SELECT address FROM user where name=" + "'" + name + "'"; //输user表的所有数据
-	var sql = "update user set address = " + "'" + location + "'" + ' where name = ' + "'" + name + "'";
+	var sql = "update user set location = " + "'" + location + "'" + ' where username = ' + "'" + name + "'";
 	//调用query方法执行查询mysql数据库对应账号的密码,用连接池是为了建立一次连接使用多次数据库，建立连接很耗时间
 	pool.pool.getConnection(function (err, connection) {
 		if (err) {
@@ -27,8 +27,6 @@ router.use('/', function (req, res, next) {
 		});
 	})  //pool
 })  //router
-router.get('/', function(req, res, next) {
-	res.redirect('./auth/my/my.html'); //根目录为public
-  });
+
 
 module.exports = router;
