@@ -12,6 +12,7 @@ var vm = new Vue({
 				new: document.getElementById("new").value,
 				again: document.getElementById("again").value
 			}
+			var self = this;
 			fetch('http://localhost:3000/verify', {
 				method: 'post',
 				mode: 'cors',
@@ -25,16 +26,16 @@ var vm = new Vue({
 					return response.json();
 				}).then(function (data) {
 					if (JSON.parse(data.status) == 1) {
-						window.alert("修改成功，1秒后跳转");
-						setTimeout("changeState()", 1000)
+						alert("修改成功，1秒后跳转");
+						setTimeout(self.changeState(), 1000)
 					}
 					else{
-						window.alert(data.msg);
+						alert(data.msg);
 					}
 				})
 		},
 		changeState:function() {
-			window.location.href = "my.html"
+			window.location.href = "/pages/auth/my/my.html"
 		}
 	}
 })
