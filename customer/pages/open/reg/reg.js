@@ -42,7 +42,7 @@ var vm = new Vue({
         reg: function() {
             //判断你的用户名有没有填写
             if (this.phoneInput === null || this.phoneInput === '') {
-                window.alert('用户名必须填写');
+                window.alert('手机号必须填写');
                 return;
             }
             //判断手机号不规范
