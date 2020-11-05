@@ -15,8 +15,8 @@ router.use('/', function (req, res, next) {
     var myDate = new Date()
     //数据表名为order时出错
     var findTable = "SELECT * from orders";
-    var sql = "INSERT INTO orders (orderID, userID, storeID, imgID, type, number, money, location,create_at) VALUES(?,?,?,?,?,?,?,?,?)"
-    var sqlParams = [orderID, userID, storeID, imgID, type, number, money, location,myDate];
+    var sql = "INSERT INTO orders (orderID, userID, storeID, imgID, type, number, money, location,created_at) VALUES(?,?,?,?,?,?,?,?,?)"
+    var sqlParams = [orderID, userID, storeID, imgID, type, number, money, location, myDate];
     pool.pool.getConnection(function (err, connection) {
         if (err) {
             console.log('连接池错误', err.message);
@@ -30,7 +30,7 @@ router.use('/', function (req, res, next) {
             else {
                 connection.query(sql, sqlParams, function (err, result) {
                     if (err) {
-                        console.log('[插入错误] - ', err.message);
+                        console.log('[order 插入错误] - ', err.message);
                         return;
                     }
                     //console.log("INSERTED: ", result);
