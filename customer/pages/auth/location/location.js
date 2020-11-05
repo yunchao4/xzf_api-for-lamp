@@ -10,6 +10,7 @@ var vm = new Vue({
 				location: document.getElementById('location').value,
 				name: localStorage.getItem('name')
 			}
+			var self = this;
 			console.log(mydata);
 			fetch('http://localhost:3000/location', {
 				method: 'post',
@@ -25,12 +26,12 @@ var vm = new Vue({
 				}).then(function (data) {
 					if (JSON.parse(data.status) == 1) {
 						alert("修改成功，1秒后跳转");
-						setTimeout("changeState()", 1000)
+						setTimeout(self.changeState(), 1000)
 					}
 				})
 		},
 		changeState:function() {
-			window.location.href = "my.html"
+			window.location.href = "/pages/auth/my/my.html"
 		}
 	}
 })
