@@ -6,6 +6,7 @@ router.use('/', verify);
 router.use('/', function (req, res, next) {
     var imgID = req.body.imgID;
     var image = req.body.image;
+    console.log(image)
     var cate = req.body.category;
     var size = req.body.size;
     var bgc = req.body.bgc;
