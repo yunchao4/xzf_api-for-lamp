@@ -17,8 +17,8 @@ var change_location = require('./api/change_location/change_location');
 
 var save_photo = require('./api/photo/save_photo');
 var save_order = require('./api/order/save_order');
-var get_order = require('./api/get_order/get_order');
-var get_photo = require('./api/get_photo/get_photo');
+var get_order = require('./api/order/get_order');
+var get_photo = require('./api/photo/get_photo');
 var get_store = require('./api/get_store/get_store')
 
 //本项目需要引进的包

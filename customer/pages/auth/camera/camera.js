@@ -109,8 +109,6 @@ $(document).ready(function () {
 
     $(".gallery").click(function () {
         if (inPreview) {
-            //TODO: change icon
-
             var data = {
                 //传到接口的图片BASE64需要裁剪前缀
                 "file": imageBASE64.slice(22),
